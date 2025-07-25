@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 50px auto; text-align: center; }
+        input[type="url"] { width: 80%; padding: 10px; }
+        button { padding: 10px 15px; }
+        #result { margin-top: 20px; } 
+    </style>
+</head>
+<body>
+    <h1>URL Shortner</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="url" name="original_url" placeholder="Enter your long URL here" required>
+        <button type="submit">Shorten</button>
+    </form>
+
+    {% if shortened_url %}
+    <div id="result">
+        <p>Your shortened URL is: </p>
+        <a href="{{ shortened_url }}" target="_blank">{{ shortened_url }}</a>
+    </div>
+    {% endif %}
+    
+</body>
+</html>
